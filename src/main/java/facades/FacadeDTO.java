@@ -1,6 +1,7 @@
 package facades;
 
 import dto.PersonDTO;
+import entity.CityInfo;
 import entity.Person;
 
 import java.util.HashSet;
@@ -83,7 +84,8 @@ public class FacadeDTO implements IFacadeDTO{
 
         for (Person p:persons) {
 
-            personDTOs.add(new PersonDTO(p.getEmail(),p.getFirstName(),p.getLastName()));
+            //personDTOs.add(new PersonDTO(p.getEmail(),p.getFirstName(),p.getLastName()));
+            personDTOs.add(new PersonDTO(p));
 
         }
 

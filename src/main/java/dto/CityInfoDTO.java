@@ -32,7 +32,7 @@ public class CityInfoDTO {
         this.city = cityInfo.getCity();
 
         for (Address a : cityInfo.getAddressSet()) {
-            this.addressDTOSet.add("id:" + a.getId() + " street:" + a.getStreet() + " additionalInfo:" + a.getAdditionalInfo());
+            this.addressDTOSet.add("id:" + a.getId() + ", street:" + a.getStreet() + ", additionalInfo:" + a.getAdditionalInfo());
         }
     }
 

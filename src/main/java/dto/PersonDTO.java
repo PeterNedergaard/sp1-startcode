@@ -37,11 +37,11 @@ public class PersonDTO {
         this.addressDTO = new AddressDTO(person.getAddress());
 
         for (Phone p : person.getPhoneSet()) {
-            this.phoneDTOSet.add("id:" + p.getId() + " number:" + p.getNumber() + " description:" + p.getDescription());
+            this.phoneDTOSet.add("id:" + p.getId() + ", number:" + p.getNumber() + ", description:" + p.getDescription());
 
         }
         for(Hobby h: person.getHobbySet()){
-            hobbyDTOSet.add("id:" + h.getId() + " name:" + h.getName() + " description" + h.getDescription());
+            hobbyDTOSet.add("id:" + h.getId() + ", name:" + h.getName() + ", description:" + h.getDescription());
         }
 
     }

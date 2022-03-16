@@ -34,8 +34,8 @@ public class AddressDTO {
         this.cityInfoDTO = new CityInfoDTO(address.getCityInfo());
 
         for (Person p : address.getPersonSet()) {
-            this.personDTOSet.add("id:" + p.getId() + " email:" + p.getEmail() +
-                    " firstname:" + p.getFirstName() + " lastname:" + p.getLastName());
+            this.personDTOSet.add("id:" + p.getId() + ", email:" + p.getEmail() +
+                    ", firstname:" + p.getFirstName() + ", lastname:" + p.getLastName());
         }
     }
 

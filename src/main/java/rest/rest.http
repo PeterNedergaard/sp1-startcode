@@ -1,0 +1,30 @@
+GET http://localhost:8080/devops_starter_war_exploded/api/user/1
+
+###
+
+POST http://localhost:8080/devops_starter_war_exploded/api/user
+Content-Type: application/json
+
+{
+  "email": "rasmus@hotmail",
+  "firstName": "Rasmus",
+  "lastName": "Kurtsen"
+}
+
+
+###
+
+PUT http://localhost:8080/devops_starter_war_exploded/api/user/2
+Content-Type: application/json
+
+{
+  "email": "svend@mail.dk",
+  "firstName": "Svend",
+  "lastName": "Åge"
+}
+
+
+###
+
+
+DELETE http://localhost:8080/devops_starter_war_exploded/api/user/1

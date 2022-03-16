@@ -185,6 +185,8 @@ public class Facade implements IFacade{
         Person find = getPersonById(personId);
         if (!person.getFirstName().equals(null)){
             find.setFirstName(person.getFirstName());
+            find.setLastName(person.getLastName());
+            find.setEmail(person.getEmail());
         }
 
         try{
