@@ -1,10 +1,8 @@
 package dto;
 
 import entity.Address;
-import entity.CityInfo;
 import entity.Person;
 
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

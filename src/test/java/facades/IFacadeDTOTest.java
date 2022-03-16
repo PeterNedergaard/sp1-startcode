@@ -1,6 +1,5 @@
 package facades;
 
-import dto.AddressDTO;
 import dto.PersonDTO;
 import entity.Person;
 import generate.Main;

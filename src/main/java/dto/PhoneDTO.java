@@ -1,6 +1,5 @@
 package dto;
 
-import entity.Person;
 import entity.Phone;
 
 public class PhoneDTO {

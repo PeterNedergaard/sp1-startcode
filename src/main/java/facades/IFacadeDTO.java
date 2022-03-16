@@ -1,9 +1,7 @@
 package facades;
 
 import dto.PersonDTO;
-import entity.Person;
 
-import java.util.List;
 import java.util.Set;
 
 public interface IFacadeDTO {

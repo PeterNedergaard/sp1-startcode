@@ -1,15 +1,17 @@
 package generate;
 
+
 import dto.AddressDTO;
 import dto.PersonDTO;
 import dto.PhoneDTO;
-import entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.*;
 
 public class Main {
 
@@ -20,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Address address1 = new Address("Gade","MoreInfo");
+        /*Address address1 = new Address("Gade","MoreInfo");
         Address address2 = new Address("Gade2","MoreInfo2");
 
         CityInfo cityInfo1 = new CityInfo("1100","By1");
@@ -53,13 +55,17 @@ public class Main {
         AddressDTO addressDTO2 = new AddressDTO(address2);
 
         PersonDTO personDTO1 = new PersonDTO(person1);
-        PhoneDTO phoneDTO1 = new PhoneDTO(phone1);
+        PhoneDTO phoneDTO1 = new PhoneDTO(phone1);*/
 
 
         //System.out.println(gson.toJson(addressDTO1));
         //System.out.println(gson.toJson(addressDTO2));
-        System.out.println(gson.toJson(personDTO1));
+        //System.out.println(gson.toJson(personDTO1));
         //System.out.println(gson.toJson(phoneDTO1));
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+
+        generate(emf);
 
 
     }
@@ -106,6 +112,10 @@ public class Main {
 
             em.persist(hobby1);
             em.persist(hobby2);
+            em.persist(hobby3);
+            em.persist(hobby4);
+            em.persist(hobby5);
+            em.persist(hobby7);
 
             em.persist(phone1);
             em.persist(phone2);
