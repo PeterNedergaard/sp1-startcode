@@ -1,6 +1,7 @@
 package facades;
 
 import entity.*;
+import errorhandling.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -168,18 +169,21 @@ public class Facade implements IFacade{
     }
 
     @Override
-    public Person getPersonById(Long personId) {
+    public Person getPersonById(Long personId) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
+        Person person = em.find(Person.class,personId);
 
+        if (person==null)
+            throw new NotFoundException("person with id " + personId + " not found");
         try{
-            return em.find(Person.class,personId);
+            return person;
         } finally {
             em.close();
         }
     }
 
     @Override
-    public Person editPerson(Person person, Long personId) {
+    public Person editPerson(Person person, Long personId) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
 
         Person find = getPersonById(personId);
@@ -201,7 +205,7 @@ public class Facade implements IFacade{
     }
 
     @Override
-    public boolean deletePerson(Long personId) {
+    public boolean deletePerson(Long personId) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
         Person personToDelete;
         boolean personIsNull = false;

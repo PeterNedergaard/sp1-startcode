@@ -1,6 +1,7 @@
 package facades;
 
 import dto.PersonDTO;
+import errorhandling.NotFoundException;
 
 import java.util.Set;
 
@@ -20,11 +21,11 @@ public interface IFacadeDTO {
 
     PersonDTO createPerson(PersonDTO personDTO);
 
-    PersonDTO getPersonById(Long personId);
+    PersonDTO getPersonById(Long personId) throws NotFoundException;
 
-    PersonDTO editPerson(PersonDTO personDTO, Long personId);
+    PersonDTO editPerson(PersonDTO personDTO, Long personId) throws NotFoundException;
 
-    boolean deletePerson(Long personId);
+    boolean deletePerson(Long personId) throws NotFoundException;
 
 
 

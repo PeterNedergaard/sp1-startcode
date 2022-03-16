@@ -1,8 +1,8 @@
 package facades;
 
 import dto.PersonDTO;
-import entity.CityInfo;
 import entity.Person;
+import errorhandling.NotFoundException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -59,19 +59,19 @@ public class FacadeDTO implements IFacadeDTO{
     }
 
     @Override
-    public PersonDTO getPersonById(Long personId) {
+    public PersonDTO getPersonById(Long personId) throws NotFoundException {
         return new PersonDTO(facade.getPersonById(personId));
     }
 
     @Override
-    public PersonDTO editPerson(PersonDTO personDTO, Long personId) {
+    public PersonDTO editPerson(PersonDTO personDTO, Long personId) throws NotFoundException {
         Person person = new Person(personDTO.getEmail(),personDTO.getFirstName(),personDTO.getLastName());
 
         return new PersonDTO(facade.editPerson(person,personId));
     }
 
     @Override
-    public boolean deletePerson(Long personId) {
+    public boolean deletePerson(Long personId) throws NotFoundException {
         return facade.deletePerson(personId);
     }
 

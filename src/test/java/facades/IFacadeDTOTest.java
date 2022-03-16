@@ -2,6 +2,7 @@ package facades;
 
 import dto.PersonDTO;
 import entity.Person;
+import errorhandling.NotFoundException;
 import generate.Main;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -129,7 +130,7 @@ class IFacadeDTOTest {
     }
 
     @Test
-    void getPersonById(){
+    void getPersonById() throws NotFoundException {
         Long expected = 1L;
         Long actual = facadeDTO.getPersonById(1L).getId();
 
@@ -137,7 +138,7 @@ class IFacadeDTOTest {
     }
 
     @Test
-    void editPerson() {
+    void editPerson() throws NotFoundException {
         String expected = "Kurt";
         PersonDTO personToEdit = new PersonDTO("rabee@hotmail.dk","Kurt","Abla");
         String actual = facadeDTO.editPerson(personToEdit,1L).getFirstName();
@@ -146,7 +147,7 @@ class IFacadeDTOTest {
     }
 
     @Test
-    void deletePerson() {
+    void deletePerson() throws NotFoundException {
         boolean expected = true;
         boolean actual = facadeDTO.deletePerson(2L);
 

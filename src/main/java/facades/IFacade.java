@@ -1,6 +1,7 @@
 package facades;
 
 import entity.Person;
+import errorhandling.NotFoundException;
 
 import java.util.Set;
 
@@ -20,11 +21,11 @@ public interface IFacade {
 
     Person createPerson(Person person);
 
-    Person getPersonById(Long personId);
+    Person getPersonById(Long personId) throws NotFoundException;
 
-    Person editPerson(Person person, Long personId);
+    Person editPerson(Person person, Long personId) throws NotFoundException;
 
-    boolean deletePerson(Long personId);
+    boolean deletePerson(Long personId) throws NotFoundException;
 
 
 }

@@ -1,6 +1,7 @@
 package facades;
 
 import entity.Person;
+import errorhandling.NotFoundException;
 import generate.Main;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -125,7 +126,7 @@ class IFacadeTest {
     }
 
     @Test
-    void getPersonById(){
+    void getPersonById() throws NotFoundException {
         Long expected = 1L;
         Long actual = facade.getPersonById(1L).getId();
 
@@ -133,7 +134,7 @@ class IFacadeTest {
     }
 
     @Test
-    void editPerson() {
+    void editPerson() throws NotFoundException {
         String expected = "Kurt";
         Person personToEdit = new Person("rabee@hotmail.dk","Kurt","Abla");
         String actual = facade.editPerson(personToEdit,1L).getFirstName();
@@ -142,7 +143,7 @@ class IFacadeTest {
     }
 
     @Test
-    void deletePerson() {
+    void deletePerson() throws NotFoundException {
         boolean expected = true;
         boolean actual = facade.deletePerson(2L);
 

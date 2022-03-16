@@ -1,6 +1,7 @@
 package rest;
 
 import errorhandling.GenericExceptionMapper;
+import errorhandling.NotFoundExceptionMapper;
 
 import javax.ws.rs.core.Application;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(NotFoundExceptionMapper.class);
         resources.add(GenericExceptionMapper.class);
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
         resources.add(Resource.class);

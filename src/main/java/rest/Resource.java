@@ -3,15 +3,12 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
-import entity.Person;
-import facades.Facade;
+import errorhandling.NotFoundException;
 import facades.FacadeDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 //Todo Remove or change relevant parts before ACTUAL use
@@ -20,6 +17,12 @@ public class Resource {
 
     FacadeDTO facadeDTO = new FacadeDTO("pu");
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    @GET
+    @Path("error")
+    public String throwError() throws Exception {
+        throw new Exception();
+    }
 
 
     @GET
@@ -37,8 +40,11 @@ public class Resource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPeopleById(@PathParam("id") long id) {
+    public Response getPeopleById(@PathParam("id") long id) throws NotFoundException {
         PersonDTO p = facadeDTO.getPersonById(id);
+        System.out.println(p);
+        if (p==null)
+            throw new NotFoundException("Person with id: " + id + "  not found");
         return Response
                 .ok()
                 .entity(gson.toJson(p))
@@ -123,7 +129,7 @@ public class Resource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePerson(String jsonContext, @PathParam("id") Long id) {
+    public Response updatePerson(String jsonContext, @PathParam("id") Long id) throws NotFoundException {
         PersonDTO pdto = gson.fromJson(jsonContext,PersonDTO.class);
         System.out.println(pdto.getEmail());
         System.out.println(pdto.getFirstName());
@@ -139,7 +145,7 @@ public class Resource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deletePerson(@PathParam("id") Long id) {
+    public Response deletePerson(@PathParam("id") Long id) throws NotFoundException {
         boolean deletedPerson = facadeDTO.deletePerson(id);
         return Response
                 .ok()
