@@ -30,6 +30,7 @@
         </properties>
     </persistence-unit>
 
+
     <persistence-unit name="putest">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>entity.Person</class>

@@ -28,7 +28,15 @@ public class Facade implements IFacade{
         EntityManager em = emf.createEntityManager();
 
         try{
-            return new HashSet(em.createQuery("SELECT p FROM Person p",Person.class).getResultList());
+            List<Person> personList = em.createQuery("SELECT p FROM Person p",Person.class).getResultList();
+            Set<Person> personSet = new HashSet<>(personList);
+
+            for (Person p : personSet) {
+                System.out.println(p.getEmail());
+            }
+
+            return personSet;
+
         } finally {
             em.close();
         }
