@@ -71,7 +71,7 @@ public class FacadeDTO implements IFacadeDTO{
     }
 
     @Override
-    public boolean deletePerson(Long personId) throws NotFoundException {
+    public Long deletePerson(Long personId) throws NotFoundException {
         return facade.deletePerson(personId);
     }
 
@@ -82,10 +82,14 @@ public class FacadeDTO implements IFacadeDTO{
 
         Set<PersonDTO> personDTOs = new HashSet<>();
 
-        for (Person p:persons) {
+        for (Person p : persons) {
 
-            //personDTOs.add(new PersonDTO(p.getEmail(),p.getFirstName(),p.getLastName()));
-            personDTOs.add(new PersonDTO(p));
+            if (p.getAddress() == null){
+                personDTOs.add(new PersonDTO(p.getEmail(),p.getFirstName(),p.getLastName()));
+            } else {
+                personDTOs.add(new PersonDTO(p));
+            }
+
 
         }
 

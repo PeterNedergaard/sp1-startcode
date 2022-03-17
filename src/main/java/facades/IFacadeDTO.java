@@ -25,7 +25,7 @@ public interface IFacadeDTO {
 
     PersonDTO editPerson(PersonDTO personDTO, Long personId) throws NotFoundException;
 
-    boolean deletePerson(Long personId) throws NotFoundException;
+    Long deletePerson(Long personId) throws NotFoundException;
 
 
 

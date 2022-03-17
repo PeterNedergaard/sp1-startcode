@@ -31,12 +31,7 @@ public class Facade implements IFacade{
             List<Person> personList = em.createQuery("SELECT p FROM Person p",Person.class).getResultList();
             Set<Person> personSet = new HashSet<>(personList);
 
-            for (Person p : personSet) {
-                System.out.println(p.getEmail());
-            }
-
             return personSet;
-
         } finally {
             em.close();
         }
@@ -213,37 +208,21 @@ public class Facade implements IFacade{
     }
 
     @Override
-    public boolean deletePerson(Long personId) throws NotFoundException {
+    public Long deletePerson(Long personId) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
-        Person personToDelete;
-        boolean personIsNull = false;
 
-        try{
+        try {
             em.getTransaction().begin();
             Person current = em.merge(getPersonById(personId));
             em.remove(current);
             em.getTransaction().commit();
 
-            try{
-                personToDelete = getPersonById(personId);
-
-                if (personToDelete == null){
-                    personIsNull = true;
-                }
-
-            } catch (Exception e){
-                e.printStackTrace();
-
-            }
+            return personId;
 
         } finally {
             em.close();
         }
-
-        return personIsNull;
     }
-
-
 
 
 }

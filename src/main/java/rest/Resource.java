@@ -101,7 +101,7 @@ public class Resource {
     @GET
     @Path("/zipcode/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPersonsByHobby() {
+    public Response getAllZips() {
         Set<String> zips = facadeDTO.getAllZipcodes();
         return Response
                 .ok()
@@ -146,7 +146,7 @@ public class Resource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deletePerson(@PathParam("id") Long id) throws NotFoundException {
-        boolean deletedPerson = facadeDTO.deletePerson(id);
+        Long deletedPerson = facadeDTO.deletePerson(id);
         return Response
                 .ok()
                 .entity(gson.toJson(deletedPerson))

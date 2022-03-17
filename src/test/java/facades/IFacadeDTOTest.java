@@ -51,7 +51,7 @@ class IFacadeDTOTest {
 
     @Test
     void getAllPersons() {
-        int expected = 3;
+        int expected = 8;
         int actual = facadeDTO.getAllPersons().size();
 
         assertEquals(expected,actual);
@@ -59,7 +59,7 @@ class IFacadeDTOTest {
 
     @Test
     void getPersonInfoByPhoneNum() {
-        String expected = "rabee@hotmail.dk";
+        String expected = "peter@live.dk";
         String actual = facadeDTO.getPersonInfoByPhoneNum("54853846").getEmail();
 
         assertEquals(expected,actual);
@@ -89,7 +89,7 @@ class IFacadeDTOTest {
         Set<String> expected = new HashSet<>();
         Set<String> actual = new HashSet<>();
 
-        expected.add("mo@yahoo.dk");
+        expected.add("peter@live.dk");
         expected.add("rabee@hotmail.dk");
 
 
@@ -102,8 +102,8 @@ class IFacadeDTOTest {
 
     @Test
     void personCountByHobby() {
-        int expected = 1;
-        int actual = facadeDTO.personCountByHobby("Ping pong");
+        int expected = 3;
+        int actual = facadeDTO.personCountByHobby("Card game");
 
         assertEquals(expected,actual);
     }
@@ -111,15 +111,18 @@ class IFacadeDTOTest {
     @Test
     void getAllZipcodes() {
         Set<String> expected = new HashSet<>();
-        expected.add("2000");
         expected.add("2791");
+        expected.add("2000");
+        expected.add("2400");
+        expected.add("9800");
+        expected.add("5700");
         Set<String> actual= facadeDTO.getAllZipcodes();
         assertEquals(expected,actual);
     }
 
     @Test
     void createPerson() {
-        PersonDTO personDTO = new PersonDTO("email","hans","Bent");
+        PersonDTO personDTO = new PersonDTO("Hans@Bent.dk","Hans","Bent");
 
         PersonDTO actual = facadeDTO.createPerson(personDTO);
 
@@ -148,8 +151,18 @@ class IFacadeDTOTest {
 
     @Test
     void deletePerson() throws NotFoundException {
+
+        Long idToDelete = 2L;
+        facadeDTO.deletePerson(idToDelete);
+
         boolean expected = true;
-        boolean actual = facadeDTO.deletePerson(2L);
+        boolean actual = true;
+
+        for (Person p : em.createQuery("SELECT p FROM Person p",Person.class).getResultList()) {
+            if (p.getId().equals(idToDelete)){
+                actual = false;
+            }
+        }
 
         assertEquals(expected,actual);
     }

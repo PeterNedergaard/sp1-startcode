@@ -25,7 +25,7 @@ public interface IFacade {
 
     Person editPerson(Person person, Long personId) throws NotFoundException;
 
-    boolean deletePerson(Long personId) throws NotFoundException;
+    Long deletePerson(Long personId) throws NotFoundException;
 
 
 }
