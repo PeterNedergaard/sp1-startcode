@@ -11,7 +11,7 @@ public class HobbyDTO {
     private Long id;
     private String name;
     private String description;
-    private Set<PersonDTO> personDTOSet = new HashSet<>();
+    private Set<String> personDTOSet = new HashSet<>();
 
     public HobbyDTO(Long id, String name, String description) {
         this.id = id;
@@ -26,9 +26,9 @@ public class HobbyDTO {
     public HobbyDTO(Hobby hobby) {
         this.name=hobby.getName();
         this.description= hobby.getDescription();
-        for(Person p: hobby.getPersonSet()){
-            this.personDTOSet.add(new PersonDTO(p));
 
+        for(Person p: hobby.getPersonSet()){
+            personDTOSet.add("email:" + p.getEmail() + ", firstname:" + p.getFirstName() + ", lastname:" + p.getLastName());
         }
 
 
@@ -58,11 +58,11 @@ public class HobbyDTO {
         this.description = description;
     }
 
-    public Set<PersonDTO> getPersonDTOSet() {
+    public Set<String> getPersonDTOSet() {
         return personDTOSet;
     }
 
-    public void setPersonDTOSet(Set<PersonDTO> personDTOSet) {
+    public void setPersonDTOSet(Set<String> personDTOSet) {
         this.personDTOSet = personDTOSet;
     }
 }

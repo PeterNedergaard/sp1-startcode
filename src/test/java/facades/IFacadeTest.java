@@ -144,8 +144,8 @@ class IFacadeTest {
 
     @Test
     void deletePerson() throws NotFoundException {
-        Long expected = 3L;
-        Long actual = facade.deletePerson(3L);
+        Long expected = 4L;
+        Long actual = facade.deletePerson(4L).getId();
 
         assertEquals(expected,actual);
     }

@@ -2,6 +2,12 @@ GET http://localhost:8080/devops_starter_war_exploded/api/user/6
 
 ###
 
+
+GET http://localhost:8080/devops_starter_war_exploded/api/user/hobby/count/Parkour
+
+
+###
+
 POST http://localhost:8080/devops_starter_war_exploded/api/user
 Content-Type: application/json
 
@@ -27,4 +33,4 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:8080/devops_starter_war_exploded/api/user/1
+DELETE http://localhost:8080/devops_starter_war_exploded/api/user/3

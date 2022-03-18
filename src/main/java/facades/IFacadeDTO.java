@@ -1,6 +1,7 @@
 package facades;
 
 import dto.PersonDTO;
+import entity.Person;
 import errorhandling.NotFoundException;
 
 import java.util.Set;
@@ -19,13 +20,13 @@ public interface IFacadeDTO {
 
     Set<String> getAllZipcodes();
 
-    PersonDTO createPerson(PersonDTO personDTO);
+    PersonDTO createPerson(Person person);
 
     PersonDTO getPersonById(Long personId) throws NotFoundException;
 
     PersonDTO editPerson(PersonDTO personDTO, Long personId) throws NotFoundException;
 
-    Long deletePerson(Long personId) throws NotFoundException;
+    PersonDTO deletePerson(Long personId) throws NotFoundException;
 
 
 

@@ -122,14 +122,15 @@ class IFacadeDTOTest {
 
     @Test
     void createPerson() {
-        PersonDTO personDTO = new PersonDTO("Hans@Bent.dk","Hans","Bent");
+        Person person = new Person("Hans@Bent.dk","Hans","Bent");
 
-        PersonDTO actual = facadeDTO.createPerson(personDTO);
+        PersonDTO actual = facadeDTO.createPerson(person);
 
         Person expectedPerson = em.createQuery("SELECT p FROM Person p ORDER BY p.id DESC",Person.class).setMaxResults(1).getSingleResult();
-        PersonDTO expected = new PersonDTO(expectedPerson.getEmail(),expectedPerson.getFirstName(), expectedPerson.getLastName());
+        PersonDTO expectedPersonDTO = new PersonDTO(expectedPerson.getEmail(),expectedPerson.getFirstName(), expectedPerson.getLastName());
 
-        assertEquals(expected,actual);
+
+        assertEquals(expectedPersonDTO,actual);
     }
 
     @Test

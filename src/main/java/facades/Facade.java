@@ -61,7 +61,8 @@ public class Facade implements IFacade{
     @Override
     public Set<Person> getPersonsByHobby(String hobbyName) {
         EntityManager em = emf.createEntityManager();
-        Long foundHobbyId = 0L;
+
+        Set<Person> personSet = new HashSet<>();
 
 
         try{
@@ -208,7 +209,7 @@ public class Facade implements IFacade{
     }
 
     @Override
-    public Long deletePerson(Long personId) throws NotFoundException {
+    public Person deletePerson(Long personId) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -217,7 +218,7 @@ public class Facade implements IFacade{
             em.remove(current);
             em.getTransaction().commit();
 
-            return personId;
+            return current;
 
         } finally {
             em.close();

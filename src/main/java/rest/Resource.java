@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
+import entity.Person;
 import errorhandling.NotFoundException;
 import facades.FacadeDTO;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @Path("user")
 public class Resource {
 
-    FacadeDTO facadeDTO = new FacadeDTO("pu");
+    FacadeDTO facadeDTO = new FacadeDTO("putest");
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @GET
@@ -80,9 +81,13 @@ public class Resource {
     @GET
     @Path("/hobby/count/{hobby}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPersonCountByHobby(@PathParam("hobby") String hobby) {
-        int count = facadeDTO.getPersonsByHobby(hobby).size();
-        return "{\"count\":"+count+"}";
+    public Response getPersonCountByHobby(@PathParam("hobby") String hobby) {
+        int count = facadeDTO.personCountByHobby(hobby);
+        //return "{\"count\":"+count+"}";
+        return Response
+                .ok()
+                .entity(gson.toJson(count))
+                .build();
     }
 
 
@@ -115,12 +120,12 @@ public class Resource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createPerson(String content) {
-        PersonDTO pdto = gson.fromJson(content,PersonDTO.class);
-        PersonDTO newpdto = facadeDTO.createPerson(pdto);
+        Person p = gson.fromJson(content,Person.class);
+        PersonDTO pdto = facadeDTO.createPerson(p);
 
         return Response
                 .ok()
-                .entity(gson.toJson(newpdto))
+                .entity(gson.toJson(pdto))
                 .build();
     }
 
@@ -145,12 +150,8 @@ public class Resource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deletePerson(@PathParam("id") Long id) throws NotFoundException {
-        Long deletedPerson = facadeDTO.deletePerson(id);
-        return Response
-                .ok()
-                .entity(gson.toJson(deletedPerson))
-                .build();
+    public PersonDTO deletePerson(@PathParam("id") Long id) throws NotFoundException {
+        return facadeDTO.deletePerson(id);
     }
 
 

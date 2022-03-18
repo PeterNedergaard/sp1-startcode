@@ -14,7 +14,7 @@ public class PersonDTO {
     private String lastName;
     AddressDTO addressDTO;
     private Set<String> phoneDTOSet = new HashSet<>();
-    private Set<String> hobbyDTOSet = new HashSet<>();
+    private Set<HobbyDTO> hobbyDTOSet = new HashSet<>();
 
     public PersonDTO(Long id, String email, String firstName, String lastName) {
         this.id = id;
@@ -38,11 +38,12 @@ public class PersonDTO {
 
         for (Phone p : person.getPhoneSet()) {
             this.phoneDTOSet.add("id:" + p.getId() + ", number:" + p.getNumber() + ", description:" + p.getDescription());
+        }
 
+        for (Hobby h : person.getHobbySet()) {
+            hobbyDTOSet.add(new HobbyDTO(h.getId(),h.getName(),h.getDescription()));
         }
-        for(Hobby h: person.getHobbySet()){
-            hobbyDTOSet.add("id:" + h.getId() + ", name:" + h.getName() + ", description:" + h.getDescription());
-        }
+
 
     }
 
@@ -95,11 +96,11 @@ public class PersonDTO {
         this.phoneDTOSet = phoneDTOSet;
     }
 
-    public Set<String> getHobbyDTOSet() {
+    public Set<HobbyDTO> getHobbyDTOSet() {
         return hobbyDTOSet;
     }
 
-    public void setHobbyDTOSet(Set<String> hobbyDTOSet) {
+    public void setHobbyDTOSet(Set<HobbyDTO> hobbyDTOSet) {
         this.hobbyDTOSet = hobbyDTOSet;
     }
 
