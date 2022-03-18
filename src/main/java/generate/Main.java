@@ -80,7 +80,7 @@ public class Main {
             Person person4 = new Person("Kurt@email.org","Kurt","Svensen");
             Person person5 = new Person("Mustafa@mulle@com","Mustafa","Kristensen");
             Person person6 = new Person("Lars@jysk.dk","Lars","Larsen");
-            Person person7 = new Person("Ahmed@sha7ata.uae","Ahmed","Madsen");
+            Person person7 = new Person("Ahmed@samosa.dk","Ahmed","Madsen");
             Person person8 = new Person("Kim@larsen.dk","Kim","Larsen");
 
             Hobby hobby1 = new Hobby("Parkour", "Feels like spiderman");
